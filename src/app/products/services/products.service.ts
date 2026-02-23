@@ -91,7 +91,9 @@ export class ProductService {
         ...productLike,
         images: [...currentImages, ...imageNames],
       })),
-      switchMap((updateProduct) => this.http.patch<Product>(`${baseUrl}/products`, updateProduct)),
+      switchMap((updateProduct) =>
+        this.http.patch<Product>(`${baseUrl}/products/${id}`, updateProduct),
+      ),
       tap((product) => {
         this.updateProductCache(product);
       }),
